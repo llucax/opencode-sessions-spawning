@@ -36,6 +36,12 @@ A worker is a session or a task.
 - Workers may start their own unless their delegation says otherwise: lightweight agents and short tasks on routes not marked heavy freely. For a heavy one, tell your spawner (agent, model, variant, why): a session in a one-line `reply` when starting it, a task in its final answer.
 - Tell a worker to slow down when it starts heavy workers too often.
 
+## Progress
+
+- Tell workers not to `reply` with routine progress, only final results, blockers, decisions and heavy-worker starts.
+- To check progress, call `list_sessions` with `include_todo` and match rows to your spawns' IDs. Never just to mirror it.
+- A worker is done only at its final report, not at 100%.
+
 ## Cleanup
 
 - Prefix a session's title with `(DONE) ` once its work is verified and finished.
