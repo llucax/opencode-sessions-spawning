@@ -11,6 +11,7 @@ A worker only needs `agent-messages` to read its delegation and report back; a s
 
 - A tool named `model_route` that picks the model for each worker, such as the one [opencode-model-routing](https://github.com/llucax/opencode-model-routing) provides. Given a `job` (or a `score` range) and `tags`, it returns a `provider/model`, an effort (passed as `variant`) and notes: whether the route is heavy, with the provider's limit on heavy workers at once, and whether it is for bounded work only; or it says no route fits. Without it, `sessions-spawning` falls back to a few generic rules.
 - For sessions: the `spawn_session`, `send_agent_message` and `reply` tools from [marenz/opencode-plugins](https://github.com/marenz/opencode-plugins).
+- Optionally, `list_sessions` with `include_todo` (same plugin), which returns each session's todo summary, so workers need not report progress. [opencode-sessions-watch](https://github.com/llucax/opencode-sessions-watch)'s sidebar shows it to the user.
 - Optionally, [opencode-task-with-model](https://github.com/llucax/opencode-task-with-model), for OpenCode versions where the built-in `task` ignores its `model` and `variant`.
 - Optionally, a `quota` tool such as [opencode-quota-agent-tool](https://github.com/llucax/opencode-quota-agent-tool), used only by the fallback rules.
 
