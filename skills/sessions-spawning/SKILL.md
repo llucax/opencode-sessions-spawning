@@ -17,14 +17,14 @@ A worker is a session or a task.
 ## Model
 
 - Call the `model_route` tool with the `job` that fits, or the `job` or `score` and `tags` the agent's description recommends; add `not_model` with the author's model for second-opinion reviews. Its first line is the route: a `provider/model`, an effort and its notes; or it says no route fits.
-- Pass the model as `model` and the effort as `variant` to `task`, `task_with_model` or `spawn_session`.
+- Pass the model as `model` and the effort as `variant` to `task` or `spawn_session`.
 - Respect the notes. `heavy`: the provider's limit on heavy workers at once; long-running workers count as heavy too. `bounded work only`: one bounded job, never a loop or a long-running session.
 - When routing fails or finds no route, fix the cause or ask the user; never pick a model another way.
 - Only if there is no `model_route` tool: pick from `list_models` (and the `quota` tool, if installed), prefer the more capable model in doubt, never use a provider that trains on submitted data or keeps it beyond short operational retention, and treat `xhigh` or `max` workers as heavy, one per provider.
 
 ## Tools
 
-- If `task` prints a `task:` warning that `model` and `variant` did not apply, use `task_with_model` (plugin `opencode-task-with-model`). Without it, stop and tell the user.
+- If `task` prints a `task:` warning that `model` and `variant` did not apply, stop and tell the user.
 - Sessions need `spawn_session`, `send_agent_message` and `reply` (plugin `marenz/opencode-plugins`). Without them, use tasks or ask the user.
 
 ## Setup
